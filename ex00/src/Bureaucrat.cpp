@@ -1,71 +1,93 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 01:25:12 by coder             #+#    #+#             */
-/*   Updated: 2022/03/14 02:05:01 by vcordeir         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: vcordeir <vcordeir@student.42sp.org.br>
+// 42 SP
 
-#include "../include/Bureaucrat.hpp"
+#include "../include/Bureaucrat.h"
 
-Bureaucrat::Bureaucrat( std::string const &name, int const grade )
-	: _name(name)
+//------------------------------------------------------------------------------
+
+Bureaucrat::Bureaucrat( const std::string& pName, const int pGrade ) : mName( pName )
 {
-	std::cout << "Bureaucrat constructor called" << std::endl;
-	setGrade(grade);
+    std::cout << "Bureaucrat constructor called" << std::endl;
+    setGrade( pGrade );
 }
+
+//------------------------------------------------------------------------------
 
 Bureaucrat::~Bureaucrat( void )
 {
-	std::cout << "Bureaucrat destructor of " << getName() << " called" << std::endl;
+    std::cout << "Bureaucrat destructor of " << mName << " called" << std::endl;
 }
 
-std::string	const &Bureaucrat::getName( void ) const
+//------------------------------------------------------------------------------
+
+const std::string& Bureaucrat::getName( void ) const
 {
-	return (_name);
+    return mName;
 }
 
-int		Bureaucrat::getGrade( void ) const
+//------------------------------------------------------------------------------
+
+void Bureaucrat::setGrade( int const pGrade )
 {
-	return (_grade);
+    if ( pGrade < 1 )
+    {
+        throw GradeTooHighException();
+    }
+    else if ( pGrade > 150 )
+    {
+        throw GradeTooLowException();
+    }
+    else
+    {
+        mGrade = pGrade;
+    }       
 }
 
-void	Bureaucrat::setGrade( int const grade )
+//------------------------------------------------------------------------------
+
+int Bureaucrat::getGrade( void ) const
 {
-	if (grade < 1)
-		throw GradeTooHighException();
-	else if (grade > 150)
-		throw GradeTooLowException();
-	else
-		_grade = grade;
+    return mGrade;
 }
+
+//------------------------------------------------------------------------------
+
+void Bureaucrat::incrementGrade( void )
+{
+    setGrade( mGrade - 1 );
+}
+
+//------------------------------------------------------------------------------
+
+void Bureaucrat::decrementGrade( void )
+{
+    setGrade( mGrade + 1 );
+}
+
+//------------------------------------------------------------------------------
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "BureaucratException: grade too high, maximum acceptable value is 1.";
+    return "BureaucratException: grade too high, maximum acceptable value is 1.";
 }
+
+//------------------------------------------------------------------------------
 
 const char*	Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "BureaucratException: grade too low, minimun acceptable value is 150.";
+    return "BureaucratException: grade too low, minimun acceptable value is 150.";
 }
 
-void	Bureaucrat::incrementGrade( void )
-{
-	setGrade(getGrade() - 1);
-}
+//------------------------------------------------------------------------------
 
-void	Bureaucrat::decrementGrade( void )
+std::ostream& operator<<( std::ostream& os, const Bureaucrat& prBureaucrat )
 {
-	setGrade(getGrade() + 1);
-}
+    os << prBureaucrat.getName()
+       << ", bureaucrat grade "
+       << prBureaucrat.getGrade()
+       << '.';
 
-std::ostream&	operator<<(std::ostream& os, const Bureaucrat& bcr)
-{
-    os << bcr.getName() << ", bureaucrat grade " << bcr.getGrade() << '.';
     return os;
 }
+
+//------------------------------------------------------------------------------
