@@ -13,9 +13,28 @@ Bureaucrat::Bureaucrat( const std::string& pName, const int pGrade ) : mName( pN
 
 //------------------------------------------------------------------------------
 
+Bureaucrat::Bureaucrat( const Bureaucrat& prBureacrat )
+{
+    std::cout << "Bureaucrat copy constructor called" << std::endl;
+    *this = prBureacrat;
+}
+
+//------------------------------------------------------------------------------
+
 Bureaucrat::~Bureaucrat( void )
 {
     std::cout << "Bureaucrat destructor of " << mName << " called" << std::endl;
+}
+
+//------------------------------------------------------------------------------
+
+Bureaucrat& Bureaucrat::operator=( const Bureaucrat& prBureacrat )
+{
+    if ( this == &prBureacrat ) return *this;
+
+    mGrade = prBureacrat.mGrade;
+
+    return *this;
 }
 
 //------------------------------------------------------------------------------
@@ -27,7 +46,7 @@ const std::string& Bureaucrat::getName( void ) const
 
 //------------------------------------------------------------------------------
 
-void Bureaucrat::setGrade( int const pGrade )
+void Bureaucrat::setGrade( const int pGrade )
 {
     if ( pGrade < 1 )
     {

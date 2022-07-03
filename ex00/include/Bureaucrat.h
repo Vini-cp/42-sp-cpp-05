@@ -9,13 +9,15 @@
 class Bureaucrat
 {
 public:
-
-    Bureaucrat( std::string const& pName, int const pGrade );
+    Bureaucrat( const std::string& pName, const int pGrade );
+    Bureaucrat( const Bureaucrat& prBureacrat );
     ~Bureaucrat( void );
+
+    Bureaucrat& operator=( const Bureaucrat& prBureacrat );
 
     const std::string& getName( void ) const;
     
-    void setGrade( int const pGrade );
+    void setGrade( const int pGrade );
     int getGrade( void ) const;
 
     void incrementGrade( void );
@@ -31,7 +33,7 @@ public:
 
 private:
 
-    std::string const mName;
+    const std::string mName;
     int mGrade;
 
 };
