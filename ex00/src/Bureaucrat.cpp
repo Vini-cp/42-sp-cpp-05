@@ -5,6 +5,13 @@
 
 //------------------------------------------------------------------------------
 
+Bureaucrat::Bureaucrat( void ) : mName( "" ), mGrade( 150 )
+{
+    std::cout << "Bureaucrat default constructor called" << std::endl;
+}
+
+//------------------------------------------------------------------------------
+
 Bureaucrat::Bureaucrat( const std::string& pName, const int pGrade ) : mName( pName )
 {
     std::cout << "Bureaucrat constructor called" << std::endl;
@@ -85,14 +92,14 @@ void Bureaucrat::decrementGrade( void )
 
 //------------------------------------------------------------------------------
 
-const char*	Bureaucrat::GradeTooHighException::what() const throw()
+const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
     return "BureaucratException: grade too high, maximum acceptable value is 1.";
 }
 
 //------------------------------------------------------------------------------
 
-const char*	Bureaucrat::GradeTooLowException::what() const throw()
+const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
     return "BureaucratException: grade too low, minimun acceptable value is 150.";
 }

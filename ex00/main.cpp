@@ -55,7 +55,7 @@ int main( void )
             std::cout << lBureau << std::endl;
 
             lBureau.incrementGrade();
-		    std::cout << lBureau << std::endl;
+            std::cout << lBureau << std::endl;
         }
         catch (std::exception& e)
         {
@@ -72,7 +72,7 @@ int main( void )
             std::cout << lBureau << std::endl;
 
             lBureau.decrementGrade();
-		    std::cout << lBureau << std::endl;
+            std::cout << lBureau << std::endl;
         }
         catch (std::exception& e)
         {
@@ -81,5 +81,5 @@ int main( void )
         std::cout << "=====================================" << std::endl << std::endl;
     }
 
-	return 0;
+    return 0;
 }
