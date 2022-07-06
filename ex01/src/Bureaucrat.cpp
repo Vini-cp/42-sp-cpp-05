@@ -20,7 +20,7 @@ Bureaucrat::Bureaucrat( const std::string& pName, const int pGrade ) : mName( pN
 
 //------------------------------------------------------------------------------
 
-Bureaucrat::Bureaucrat( const Bureaucrat& prBureacrat )
+Bureaucrat::Bureaucrat( const Bureaucrat& prBureacrat ) : mName ( prBureacrat.mName )
 {
     std::cout << "Bureaucrat copy constructor called" << std::endl;
     *this = prBureacrat;
@@ -37,6 +37,7 @@ Bureaucrat::~Bureaucrat( void )
 
 Bureaucrat& Bureaucrat::operator=( const Bureaucrat& prBureacrat )
 {
+    std::cout << "Bureaucrat copy assignment constructor called" << std::endl;
     if ( this == &prBureacrat ) return *this;
 
     mGrade = prBureacrat.mGrade;

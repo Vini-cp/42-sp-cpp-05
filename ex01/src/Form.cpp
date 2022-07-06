@@ -114,21 +114,21 @@ void Form::beSigned( const Bureaucrat& prBureaucrat )
 
 //------------------------------------------------------------------------------
 
-const char*	Form::GradeTooHighException::what() const throw()
+const char* Form::GradeTooHighException::what() const throw()
 {
     return "FormException: grade too high, maximum acceptable value is 1.";
 }
 
 //------------------------------------------------------------------------------
 
-const char*	Form::GradeTooLowException::what() const throw()
+const char* Form::GradeTooLowException::what() const throw()
 {
     return "FormException: grade too low, minimun acceptable value is 150.";
 }
 
 //------------------------------------------------------------------------------
 
-const char*	Form::GradeTooLowToSignException::what() const throw()
+const char* Form::GradeTooLowToSignException::what() const throw()
 {
     return "FormException: grade too low to sign!";
 }
